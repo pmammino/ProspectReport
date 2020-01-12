@@ -6,14 +6,14 @@
 # install.packages("MASS")
 # install.packages("WMDB")
 # install.packages("teamcolors")
-library(teamcolors)
-library(Hmisc)
-library(SDMTools)
-library(MASS)
-library(tidyverse)
-library(readxl)
-library(Hmisc)
-library(WMDB)
+# library(teamcolors)
+# library(Hmisc)
+# library(SDMTools)
+# library(MASS)
+# library(tidyverse)
+# library(readxl)
+# library(Hmisc)
+# library(WMDB)
 options(scipen = 999)
 
 #Team Colors----
@@ -156,153 +156,154 @@ Minors_calc <- function(key)
     wt.mean(Sample$`Total Val`, Sample$W)
 }
 
-#List_all <- as.list(miLB$Key)[1:50]
-#start_time <- Sys.time()
-#comps_all <- lapply(List_all, Minors_calc)
-#end_time <- Sys.time()
-#end_time - start_time
-
-#xVal <- data.frame(unlist(comps_all))
-#colnames(xVal) <- "xVal"
-#milb_2019 <- cbind(miLB,xVal)
-#milb_2019 <- milb_2019[,c(1:7,27)]
-
-
 #Level By Level Calc ------
-# AAA_19 <- filter(miLB, Level == "AAA")
-# List_all <- as.list(AAA_19$Key)
-# start_time <- Sys.time()
-# comps_all <- lapply(List_all, Minors_calc)
-# end_time <- Sys.time()
-# end_time - start_time
+#  AAA_19 <- filter(miLB, Level == "AAA")
+#  List_all <- as.list(AAA_19$Key)
+#  start_time <- Sys.time()
+#  comps_all <- lapply(List_all, Minors_calc)
+#  end_time <- Sys.time()
+#  end_time - start_time
 # 
-# xVal <- data.frame(unlist(comps_all))
-# colnames(xVal) <- "xVal"
-# AAA_19 <- cbind(AAA_19,xVal)
-# AAA_19 <- AAA_19[,c(1:7,27)]
+#  xVal <- data.frame(unlist(comps_all))
+#  colnames(xVal) <- "xVal"
+#  AAA_19 <- cbind(AAA_19,xVal)
+#  AAA_19 <- AAA_19[,c(1:7,27)]
 # 
-# AA_19 <- filter(miLB, Level == "AA")
-# List_all <- as.list(AA_19$Key)
-# start_time <- Sys.time()
-# comps_all <- lapply(List_all, Minors_calc)
-# end_time <- Sys.time()
-# end_time - start_time
+#  AA_19 <- filter(miLB, Level == "AA")
+#  List_all <- as.list(AA_19$Key)
+#  start_time <- Sys.time()
+#  comps_all <- lapply(List_all, Minors_calc)
+#  end_time <- Sys.time()
+#  end_time - start_time
 # 
-# xVal <- data.frame(unlist(comps_all))
-# colnames(xVal) <- "xVal"
-# AA_19 <- cbind(AA_19,xVal)
-# AA_19 <- AA_19[,c(1:7,27)]
+#  xVal <- data.frame(unlist(comps_all))
+#  colnames(xVal) <- "xVal"
+#  AA_19 <- cbind(AA_19,xVal)
+#  AA_19 <- AA_19[,c(1:7,27)]
 # 
-# A_High_19 <- filter(miLB, Level == "A+")
-# List_all <- as.list(A_High_19$Key)
-# start_time <- Sys.time()
-# comps_all <- lapply(List_all, Minors_calc)
-# end_time <- Sys.time()
-# end_time - start_time
+#  A_High_19 <- filter(miLB, Level == "A+")
+#  List_all <- as.list(A_High_19$Key)
+#  start_time <- Sys.time()
+#  comps_all <- lapply(List_all, Minors_calc)
+#  end_time <- Sys.time()
+#  end_time - start_time
 # 
-# xVal <- data.frame(unlist(comps_all))
-# colnames(xVal) <- "xVal"
-# A_High_19 <- cbind(A_High_19,xVal)
-# A_High_19 <- A_High_19[,c(1:7,27)]
+#  xVal <- data.frame(unlist(comps_all))
+#  colnames(xVal) <- "xVal"
+#  A_High_19 <- cbind(A_High_19,xVal)
+#  A_High_19 <- A_High_19[,c(1:7,27)]
 # 
-# A_Low_19 <- filter(miLB, Level == "A-")
-# List_all <- as.list(A_Low_19$Key)
-# start_time <- Sys.time()
-# comps_all <- lapply(List_all, Minors_calc)
-# end_time <- Sys.time()
-# end_time - start_time
+#  A_Low_19 <- filter(miLB, Level == "A-")
+#  List_all <- as.list(A_Low_19$Key)
+#  start_time <- Sys.time()
+#  comps_all <- lapply(List_all, Minors_calc)
+#  end_time <- Sys.time()
+#  end_time - start_time
 # 
-# xVal <- data.frame(unlist(comps_all))
-# colnames(xVal) <- "xVal"
-# A_Low_19 <- cbind(A_Low_19,xVal)
-# A_Low_19 <- A_Low_19[,c(1:7,27)]
+#  xVal <- data.frame(unlist(comps_all))
+#  colnames(xVal) <- "xVal"
+#  A_Low_19 <- cbind(A_Low_19,xVal)
+#  A_Low_19 <- A_Low_19[,c(1:7,27)]
 # 
-# A_19 <- filter(miLB, Level == "A")
-# List_all <- as.list(A_19$Key)
-# start_time <- Sys.time()
-# comps_all <- lapply(List_all, Minors_calc)
-# end_time <- Sys.time()
-# end_time - start_time
+#  A_19 <- filter(miLB, Level == "A")
+#  List_all <- as.list(A_19$Key)
+#  start_time <- Sys.time()
+#  comps_all <- lapply(List_all, Minors_calc)
+#  end_time <- Sys.time()
+#  end_time - start_time
 # 
-# xVal <- data.frame(unlist(comps_all))
-# colnames(xVal) <- "xVal"
-# A_19 <- cbind(A_19,xVal)
-# A_19 <- A_19[,c(1:7,27)]
+#  xVal <- data.frame(unlist(comps_all))
+#  colnames(xVal) <- "xVal"
+#  A_19 <- cbind(A_19,xVal)
+#  A_19 <- A_19[,c(1:7,27)]
 # 
-# milb_2019 <- rbind(AAA_19,AA_19,A_High_19,A_Low_19,A_19)
-# 
-# 
-# #Build Table 2019 Value at All Levels -----
-# all_players_AAA <- milb_2019 %>% 
-#   filter(Level == "AAA") %>%
-#   group_by(Name, PlayerId) %>% 
-#   arrange(Name, PlayerId) %>% 
-#   summarise(AAA.PA = sum(PA), 
-#             AAAxVal = wt.mean(xVal,PA))
-# 
-# all_players_AA <- milb_2019 %>% 
-#   filter(Level == "AA") %>%
-#   group_by(Name, PlayerId) %>% 
-#   arrange(Name, PlayerId) %>% 
-#   summarise(AA.PA = sum(PA), 
-#             AAxVal = wt.mean(xVal,PA))
-# 
-# all_players_A_High <- milb_2019 %>% 
-#   filter(Level == "A+") %>%
-#   group_by(Name, PlayerId) %>% 
-#   arrange(Name, PlayerId) %>% 
-#   summarise(A_High.PA = sum(PA), 
-#             A_HighxVal = wt.mean(xVal,PA))
-# 
-# all_players_A <- milb_2019 %>% 
-#   filter(Level == "A") %>%
-#   group_by(Name, PlayerId) %>% 
-#   arrange(Name, PlayerId) %>% 
-#   summarise(A.PA = sum(PA), 
-#             AxVal = wt.mean(xVal,PA))
-# 
-# all_players_A_Low <- milb_2019 %>% 
-#   filter(Level == "A-") %>%
-#   group_by(Name, PlayerId) %>% 
-#   arrange(Name, PlayerId) %>% 
-#   summarise(A_Low.PA = sum(PA), 
-#             A_LowxVal = wt.mean(xVal,PA))
-# 
-# all_players <- merge(milb_2019[,c(1,2,6)],all_players_AAA, by = intersect(names(milb_2019), names(all_players_AAA)),all = TRUE)
-# all_players <- merge(all_players,all_players_AA, by = intersect(names(all_players), names(all_players_AA)),all = TRUE)
-# all_players <- merge(all_players,all_players_A_High, by = intersect(names(all_players), names(all_players_A_High)),all = TRUE)
-# all_players <- merge(all_players,all_players_A, by = intersect(names(all_players), names(all_players_A)),all = TRUE)
-# all_players <- merge(all_players,all_players_A_Low, by = intersect(names(all_players), names(all_players_A_Low)),all = TRUE)
-# all_players <- distinct(all_players)
-# all_players[is.na(all_players)] <- 0
-# 
-# #all_players[,c(4,6,8,10,12)] <- Map("*",all_players[,c(4,6,8,10,12)],c(.3,.4,.15,.1,.05))
-# all_players$TotalxVal <- rowSums(all_players[,c(5,7,9,11,13)] * 
-#                                    all_players[,c(4,6,8,10,12)])/
-#                                   rowSums(all_players[,c(4,6,8,10,12)])
+#  milb_2019 <- rbind(AAA_19,AA_19,A_High_19,A_Low_19,A_19)
 # 
 # 
-# #Adjust For League Context---
-# all_players_adjust <- all_players
-# all_players_adjust$AAAxVal <- all_players_adjust$AAAxVal-wt.mean(all_players_adjust$AAAxVal,all_players_adjust$AAA.PA)
-# all_players_adjust$AAxVal <- all_players_adjust$AAxVal-wt.mean(all_players_adjust$AAxVal,all_players_adjust$AA.PA)
-# all_players_adjust$A_HighxVal <- all_players_adjust$A_HighxVal-wt.mean(all_players_adjust$A_HighxVal,all_players_adjust$A_High.PA)
-# all_players_adjust$AxVal <- all_players_adjust$AxVal-wt.mean(all_players_adjust$AxVal,all_players_adjust$A.PA)
-# all_players_adjust$A_LowxVal <- all_players_adjust$A_LowxVal-wt.mean(all_players_adjust$A_LowxVal,all_players_adjust$A_Low.PA)
-# all_players_adjust$TotalxVal <- rowSums(all_players_adjust[,c(5,7,9,11,13)] * 
-#                                               all_players_adjust[,c(4,6,8,10,12)])/
-#   rowSums(all_players_adjust[,c(4,6,8,10,12)])
+# # Build Table 2019 Value at All Levels -----
+#  all_players_AAA <- milb_2019 %>%
+#    filter(Level == "AAA") %>%
+#    group_by(Name, PlayerId) %>%
+#    arrange(Name, PlayerId) %>%
+#    summarise(AAA.PA = sum(PA),
+#              AAAxVal = wt.mean(xVal,PA))
+# 
+#  all_players_AA <- milb_2019 %>%
+#    filter(Level == "AA") %>%
+#    group_by(Name, PlayerId) %>%
+#    arrange(Name, PlayerId) %>%
+#    summarise(AA.PA = sum(PA),
+#              AAxVal = wt.mean(xVal,PA))
+# 
+#  all_players_A_High <- milb_2019 %>%
+#    filter(Level == "A+") %>%
+#    group_by(Name, PlayerId) %>%
+#    arrange(Name, PlayerId) %>%
+#    summarise(A_High.PA = sum(PA),
+#              A_HighxVal = wt.mean(xVal,PA))
+# 
+#  all_players_A <- milb_2019 %>%
+#    filter(Level == "A") %>%
+#    group_by(Name, PlayerId) %>%
+#    arrange(Name, PlayerId) %>%
+#    summarise(A.PA = sum(PA),
+#              AxVal = wt.mean(xVal,PA))
+# 
+#  all_players_A_Low <- milb_2019 %>%
+#    filter(Level == "A-") %>%
+#    group_by(Name, PlayerId) %>%
+#    arrange(Name, PlayerId) %>%
+#    summarise(A_Low.PA = sum(PA),
+#              A_LowxVal = wt.mean(xVal,PA))
+# 
+#  all_players <- merge(milb_2019[,c(1,2,6)],all_players_AAA, by = intersect(names(milb_2019), names(all_players_AAA)),all = TRUE)
+#  all_players <- merge(all_players,all_players_AA, by = intersect(names(all_players), names(all_players_AA)),all = TRUE)
+#  all_players <- merge(all_players,all_players_A_High, by = intersect(names(all_players), names(all_players_A_High)),all = TRUE)
+#  all_players <- merge(all_players,all_players_A, by = intersect(names(all_players), names(all_players_A)),all = TRUE)
+#  all_players <- merge(all_players,all_players_A_Low, by = intersect(names(all_players), names(all_players_A_Low)),all = TRUE)
+#  all_players <- distinct(all_players)
+#  all_players[is.na(all_players)] <- 0
+# 
+#  all_players[,c(4,6,8,10,12)] <- Map("*",all_players[,c(4,6,8,10,12)],c(.3,.4,.15,.1,.05))
+#  all_players$TotalxVal <- rowSums(all_players[,c(5,7,9,11,13)] *
+#                                     all_players[,c(4,6,8,10,12)])/
+#                                    rowSums(all_players[,c(4,6,8,10,12)])
 # 
 # 
-# all_players_adjust <- all_players_adjust %>%
-#   filter(Age <=29) %>%
-#   arrange(desc(TotalxVal))
+# #Adjust For League Context----
+#  all_players_adjust <- all_players
+#  all_players_adjust$AAAxVal <- all_players_adjust$AAAxVal-wt.mean(all_players_adjust$AAAxVal,all_players_adjust$AAA.PA)
+#  all_players_adjust$AAxVal <- all_players_adjust$AAxVal-wt.mean(all_players_adjust$AAxVal,all_players_adjust$AA.PA)
+#  all_players_adjust$A_HighxVal <- all_players_adjust$A_HighxVal-wt.mean(all_players_adjust$A_HighxVal,all_players_adjust$A_High.PA)
+#  all_players_adjust$AxVal <- all_players_adjust$AxVal-wt.mean(all_players_adjust$AxVal,all_players_adjust$A.PA)
+#  all_players_adjust$A_LowxVal <- all_players_adjust$A_LowxVal-wt.mean(all_players_adjust$A_LowxVal,all_players_adjust$A_Low.PA)
+#  all_players_adjust$TotalxVal <- rowSums(all_players_adjust[,c(5,7,9,11,13)] *
+#                                                all_players_adjust[,c(4,6,8,10,12)])/
+#    rowSums(all_players_adjust[,c(4,6,8,10,12)])
 # 
-# all_players_adjust$TotalxVal <- round(all_players_adjust$TotalxVal,3)
-# all_players_2019 <- all_players_adjust[,c(1,2,3,14)]
-#saveRDS(all_players_2019, file = "data/all_players_2019.rds")
-
+# 
+#  all_players_adjust <- all_players_adjust %>%
+#    filter(Age <=29) %>%
+#    arrange(desc(TotalxVal))
+# 
+#  all_players_adjust$TotalxVal <- round(all_players_adjust$TotalxVal,3)
+#  all_players_2019 <- all_players_adjust[,c(1,2,3,14)]
+#  
+#  all_players_trim <- all_players[,c(1,2,3,14)]
+#  all_players_adjust_trim <- all_players_adjust[,c(1,2,3,14)]
+#  all_players_merge <- merge(all_players_trim,all_players_adjust_trim, by = "PlayerId",all = TRUE)
+#  all_players_merge <- all_players_merge[,c(1,2,3,4,7)]
+#  colnames(all_players_merge)<- c("PlayerId","Name","Age", "xVal", "xVal_Adj")
+#  
+#  all_players_merge <- all_players_merge %>%
+#    filter(Age <=29)
+#  
+# all_players_merge$Avg <- (all_players_merge$xVal * .5) + (all_players_merge$xVal_Adj * .5)
+# all_players_merge <- all_players_merge %>% arrange(desc(Avg))
+# saveRDS(all_players_merge, file = "data/all_players_2019.rds")
+# 
 all_players_2019 <- readRDS("data/all_players_2019.rds")
+
 #Function to Show Top 100 Comps----
 Minors_comp <- function(key)
 {
@@ -356,11 +357,11 @@ Minors_chart <- function(key)
   player <- Minors_comp(key)
   team <- filter(miLB, Key == key)$Team
   ggplot(player, aes(x = `Total Val`, y = ..density.., weight = W))+ 
-    geom_histogram(binwidth = 1, color = filter(mlb_colors,mascot == team)$primary, fill = filter(mlb_colors,mascot == team)$secondary) +
+    geom_histogram(binwidth = 2, color = filter(mlb_colors,mascot == team)$primary, fill = filter(mlb_colors,mascot == team)$secondary) +
     theme_bw() +
     labs(x = "Expected Value",
        y = "Probabilty",
-       caption = "@paulmamminofantasy",
+       caption = "@pmamminofantasy",
        title = "Comp Based Expected Fantasy Value",
        subtitle = filter(miLB, Key == key)$Name) +
     theme_bw() +

@@ -1,5 +1,3 @@
-library(shiny)
-library(DT)
 library(teamcolors)
 library(Hmisc)
 library(SDMTools)
