@@ -299,6 +299,8 @@ Minors_calc <- function(key)
 #    filter(Age <=29)
 #  
 # all_players_merge$Avg <- (all_players_merge$xVal * .5) + (all_players_merge$xVal_Adj * .5)
+# all_players_merge$Avg <- round(all_players_merge$Avg,3)
+# all_players_merge$xVal <- round(all_players_merge$xVal,3)
 # all_players_merge <- all_players_merge %>% arrange(desc(Avg))
 # saveRDS(all_players_merge, file = "data/all_players_2019.rds")
 # 
