@@ -38,8 +38,6 @@ minors_all <- minors_all[,-which(colnames(minors_all) %in% c("PA_MLB","BB%","K%"
 miLB <- read_excel("data/MiLB 2019.xlsx")
 miLB <- filter(miLB, Level != "R")
 
-
-
 #Divide Sample/2019 Data Into Level Groups ----
 AAA <- filter(minors_all, Level == "AAA")
 AA <- filter(minors_all, Level == "AA")
@@ -156,7 +154,7 @@ Minors_calc <- function(key)
     wt.mean(Sample$`Total Val`, Sample$W)
 }
 
-#Level By Level Calc ------
+# #Level By Level Calc ------
 #  AAA_19 <- filter(miLB, Level == "AAA")
 #  List_all <- as.list(AAA_19$Key)
 #  start_time <- Sys.time()
@@ -270,7 +268,7 @@ Minors_calc <- function(key)
 #                                    rowSums(all_players[,c(4,6,8,10,12)])
 # 
 # 
-# #Adjust For League Context----
+# # Adjust For League Context----
 #  all_players_adjust <- all_players
 #  all_players_adjust$AAAxVal <- all_players_adjust$AAAxVal-wt.mean(all_players_adjust$AAAxVal,all_players_adjust$AAA.PA)
 #  all_players_adjust$AAxVal <- all_players_adjust$AAxVal-wt.mean(all_players_adjust$AAxVal,all_players_adjust$AA.PA)
@@ -288,22 +286,22 @@ Minors_calc <- function(key)
 # 
 #  all_players_adjust$TotalxVal <- round(all_players_adjust$TotalxVal,3)
 #  all_players_2019 <- all_players_adjust[,c(1,2,3,14)]
-#  
+# 
 #  all_players_trim <- all_players[,c(1,2,3,14)]
 #  all_players_adjust_trim <- all_players_adjust[,c(1,2,3,14)]
 #  all_players_merge <- merge(all_players_trim,all_players_adjust_trim, by = "PlayerId",all = TRUE)
 #  all_players_merge <- all_players_merge[,c(1,2,3,4,7)]
 #  colnames(all_players_merge)<- c("PlayerId","Name","Age", "xVal", "xVal_Adj")
-#  
+# 
 #  all_players_merge <- all_players_merge %>%
 #    filter(Age <=29)
-#  
+# 
 # all_players_merge$Avg <- (all_players_merge$xVal * .5) + (all_players_merge$xVal_Adj * .5)
 # all_players_merge$Avg <- round(all_players_merge$Avg,3)
 # all_players_merge$xVal <- round(all_players_merge$xVal,3)
 # all_players_merge <- all_players_merge %>% arrange(desc(Avg))
 # saveRDS(all_players_merge, file = "data/all_players_2019.rds")
-# 
+
 all_players_2019 <- readRDS("data/all_players_2019.rds")
 
 #Function to Show Top 100 Comps----
