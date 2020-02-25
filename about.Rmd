@@ -1,0 +1,18 @@
+---
+title: "About"
+author: '@pmamminofantasy'
+output: html_document
+---
+
+For a basic understanding of the model methodology and some comments on how to use the tools click the below link.
+
+[Primer Article](https://www.friendswithfantasybenefits.com/fantasy-prospect-value-model-version-1-0/)
+
+For follow up and other questions follow me on [Twitter](https://twitter.com/pmamminofantasy).
+
+## Update Log
+
+|Update| Description    | Date |
+|----- | -------------- | ----- |
+|1.0   | Initial Upload | 1/13/20 |
+|1.1   | Download Link/Remove Current MiLB Comps | 2/4/20 |

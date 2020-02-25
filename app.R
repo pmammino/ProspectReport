@@ -4,7 +4,6 @@ library(SDMTools)
 library(MASS)
 library(tidyverse)
 library(readxl)
-library(Hmisc)
 library(WMDB)
 source("data/Fantasy_Prospect_Finder.R")
 
@@ -15,6 +14,7 @@ ui <- navbarPage("Fantasy Prospect Report",
                  tabPanel("Top Prospects 2019",
                           h2("Top Fantasy Prospects of 2019"),
                           h4("Less Than 29 Years Of Age"),
+                          downloadLink('downloadData', 'Download'),
                           DT::dataTableOutput('leaders')
                           ),
                  tabPanel("Top Player Comps",
@@ -32,8 +32,11 @@ ui <- navbarPage("Fantasy Prospect Report",
                            uiOutput("teamControls2"),
                            uiOutput("levelControls2"),
                            plotOutput('probchart')
-                  )
-
+                  ),
+                 tabPanel("About",
+                          includeMarkdown("about.Rmd")
+                          )
+                 
 )
 
 # Define server logic for the tables and charts
@@ -42,6 +45,16 @@ server <- function(input, output) {
         data <- all_players_2019
     }, options = list(paging = TRUE, searching = TRUE),
     rownames= FALSE))
+    
+    output$downloadData <- downloadHandler(
+      filename = function() {
+        paste('prospectreport-', Sys.Date(), '.csv', sep='')
+      },
+      content = function(con) {
+        data <- all_players_2019
+        write.csv(data, con,row.names=FALSE)
+      }
+    )
     
     output$teamControls <- renderUI({
       teams <- unique(as.character(filter(miLB,Name == input$player)$Team))
