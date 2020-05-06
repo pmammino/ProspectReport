@@ -5,6 +5,7 @@ library(MASS)
 library(tidyverse)
 library(readxl)
 library(WMDB)
+library(plotly)
 source("data/Fantasy_Prospect_Finder.R")
 
 ## Define UI----
@@ -31,7 +32,7 @@ ui <- navbarPage("Fantasy Prospect Report",
                                        sort(unique(as.character(all_players_2019$Name)))),
                            uiOutput("teamControls2"),
                            uiOutput("levelControls2"),
-                           plotOutput('probchart')
+                          plotlyOutput('probchart')
                   ),
                  tabPanel("About",
                           includeMarkdown("about.Rmd")
@@ -90,8 +91,9 @@ server <- function(input, output) {
     }, options = list(paging = TRUE, searching = TRUE),
     rownames= FALSE))
     
-    output$probchart <- renderPlot({
-        Minors_chart(filter(miLB,Name == input$player2 & Team == input$team2 & Level == input$level2)$Key)
+    output$probchart <- renderPlotly({
+        chart = Minors_chart(filter(miLB,Name == input$player2 & Team == input$team2 & Level == input$level2)$Key)
+        ggplotly(chart)
     })
     
 
