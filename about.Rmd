@@ -10,9 +10,30 @@ For a basic understanding of the model methodology and some comments on how to u
 
 For follow up and other questions follow me on [Twitter](https://twitter.com/pmamminofantasy).
 
-## Update Log
+```{r echo=FALSE,warning=FALSE,error=FALSE}
+library(gt)
+library(tibble)
 
-|Update| Description    | Date |
-|----- | -------------- | ----- |
-|1.0   | Initial Upload | 1/13/20 |
-|1.1   | Download Link/Remove Current MiLB Comps | 2/4/20 |
+updates <- tibble(
+  Version = c("1.0",
+             "1.1",
+             "2.0"),
+  Description = c("Initial Upload",
+                  "Download Handler",
+                  "Removed ISO Replaced With wRC+"),
+  Date = c("1-13-2020",
+            "2-4-2020",
+            "5-8-2020")
+)
+  
+  update <- gt(updates,
+     groupname_col = "Version") %>%
+    tab_header(
+      title = "Update Log") %>%
+  tab_style(style = list(
+    cell_fill(color = "darkgreen"),
+    cell_text(weight = "bold", color = "white")
+  ),
+  locations = cells_row_groups(groups = unique(updates$Version)))
+  update
+```

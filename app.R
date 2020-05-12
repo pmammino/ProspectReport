@@ -1,11 +1,14 @@
+library(shiny)
 library(teamcolors)
 library(Hmisc)
-library(SDMTools)
 library(MASS)
 library(tidyverse)
 library(readxl)
 library(WMDB)
+library(vroom)
 library(plotly)
+library(gt)
+library(tibble)
 source("data/Fantasy_Prospect_Finder.R")
 
 ## Define UI----
@@ -34,8 +37,8 @@ ui <- navbarPage("Fantasy Prospect Report",
                            uiOutput("levelControls2"),
                           plotlyOutput('probchart')
                   ),
-                 tabPanel("About",
-                          includeMarkdown("about.Rmd")
+                 tabPanel("Update Log",
+                         gt_output("update")
                           )
                  
 )
@@ -96,6 +99,7 @@ server <- function(input, output) {
         ggplotly(chart)
     })
     
+    output$update <- render_gt(update)
 
 
 }
