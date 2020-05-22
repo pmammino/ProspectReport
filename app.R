@@ -9,6 +9,7 @@ library(vroom)
 library(plotly)
 library(gt)
 library(tibble)
+library(DT)
 source("data/Fantasy_Prospect_Finder.R")
 
 ## Define UI----
