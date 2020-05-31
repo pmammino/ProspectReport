@@ -10,6 +10,7 @@ library(plotly)
 library(gt)
 library(tibble)
 library(DT)
+library(leaflet)
 source("data/Fantasy_Prospect_Finder.R")
 
 ## Define UI----
@@ -44,12 +45,20 @@ ui <- navbarPage("Fantasy Prospect Report",
                  
 )
 
+all_players_2019_nz <- all_players_2019 %>%
+  filter(`Elite Rate` > 0)
+
+colfunc <- colorRampPalette(c("blue","white", "red"))
+
 # Define server logic for the tables and charts
 server <- function(input, output) {
-    output$leaders <- DT::renderDataTable(DT::datatable({
-        data <- all_players_2019
-    }, options = list(paging = TRUE, searching = TRUE),
-    rownames= FALSE))
+  
+    output$leaders <- DT::renderDataTable(DT::datatable(
+      data <- all_players_2019, 
+      options = list(paging = TRUE, searching = TRUE),rownames= FALSE) 
+      %>% formatStyle("Elite Rate", backgroundColor = styleInterval(c(0,quantile(all_players_2019_nz$`Elite Rate`, probs = seq(.05, .99, .01), na.rm = TRUE)), 
+                                                                      colfunc(97)))
+    )
     
     output$downloadData <- downloadHandler(
       filename = function() {

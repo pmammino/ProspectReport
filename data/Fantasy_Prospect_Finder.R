@@ -86,6 +86,13 @@ wrc2019 <- wrc %>%
 
 miLB <- left_join(miLB,wrc2019[,c("PlayerId","Team","Level","wRC.")], by = c("PlayerId", "Team", "Level"))
 
+miLB_names <- as.list(miLB %>%
+  filter(grepl("sa",PlayerId)) %>%
+  select(PlayerId))[[1]]
+
+minors_all <- minors_all %>%
+  filter(!PlayerId %in% miLB_names)
+
 #Divide Sample/2019 Data Into Level Groups ----
 AAA <- filter(minors_all, Level == "AAA")
 AA <- filter(minors_all, Level == "AA")
@@ -201,7 +208,7 @@ Minors_calc <- function(key)
     Sample <- Sample[1:100,]
     weighted.mean(Sample$`Total Val`, Sample$W)
 }
-# 
+
 # #Level By Level Calc ------
 #  AAA_19 <- filter(miLB, Level == "AAA")
 #  List_all <- as.list(AAA_19$Key)
@@ -309,11 +316,11 @@ Minors_calc <- function(key)
 #  all_players <- merge(all_players,all_players_A_Low, by = intersect(names(all_players), names(all_players_A_Low)),all = TRUE)
 #  all_players <- distinct(all_players)
 #  all_players[is.na(all_players)] <- 0
-#  
+# 
 #  all_players$TotalxVal <- rowSums(all_players[,c(5,7,9,11,13)] *
 #                                   all_players[,c(4,6,8,10,12)])/
 #    rowSums(all_players[,c(4,6,8,10,12)])
-#  
+# 
 # 
 # 
 # # Adjust For League Context----
@@ -349,7 +356,7 @@ Minors_calc <- function(key)
 # all_players_merge$xVal <- round(all_players_merge$xVal,3)
 # all_players_merge <- all_players_merge %>% arrange(desc(Avg))
 # saveRDS(all_players_merge, file = "data/all_players_2019_V2.rds")
-# 
+
 all_players_2019 <- readRDS("data/all_players_2019_V2.rds")
 # 
 # version_comp <- left_join(all_players_merge,all_players_2019_V1,by = "PlayerId")
@@ -482,127 +489,127 @@ Minors_Elite <- function(key)
   round((sum(Sample$W)/sum) * 100,1)
 }
 
-#Elite Level Calc
-# AAA_19 <- filter(miLB, Level == "AAA")
-# List_all <- as.list(AAA_19$Key)
-# start_time <- Sys.time()
-# comps_all <- lapply(List_all, Minors_Elite)
-# end_time <- Sys.time()
-# end_time - start_time
+# #Elite Level Calc
+#  AAA_19 <- filter(miLB, Level == "AAA")
+#  List_all <- as.list(AAA_19$Key)
+#  start_time <- Sys.time()
+#  comps_all <- lapply(List_all, Minors_Elite)
+#  end_time <- Sys.time()
+#  end_time - start_time
 # 
-# Elite <- data.frame(unlist(comps_all))
-# colnames(Elite) <- "Elite_Rate"
-# AAA_19 <- cbind(AAA_19,Elite)
-# AAA_19 <- AAA_19[,c(1:7,28)]
+#  Elite <- data.frame(unlist(comps_all))
+#  colnames(Elite) <- "Elite_Rate"
+#  AAA_19 <- cbind(AAA_19,Elite)
+#  AAA_19 <- AAA_19[,c(1:7,28)]
 # 
-# AA_19 <- filter(miLB, Level == "AA")
-# List_all <- as.list(AA_19$Key)
-# start_time <- Sys.time()
-# comps_all <- lapply(List_all, Minors_Elite)
-# end_time <- Sys.time()
-# end_time - start_time
+#  AA_19 <- filter(miLB, Level == "AA")
+#  List_all <- as.list(AA_19$Key)
+#  start_time <- Sys.time()
+#  comps_all <- lapply(List_all, Minors_Elite)
+#  end_time <- Sys.time()
+#  end_time - start_time
 # 
-# Elite <- data.frame(unlist(comps_all))
-# colnames(Elite) <- "Elite_Rate"
-# AA_19 <- cbind(AA_19,Elite)
-# AA_19 <- AA_19[,c(1:7,28)]
+#  Elite <- data.frame(unlist(comps_all))
+#  colnames(Elite) <- "Elite_Rate"
+#  AA_19 <- cbind(AA_19,Elite)
+#  AA_19 <- AA_19[,c(1:7,28)]
 # 
-# A_High_19 <- filter(miLB, Level == "A+")
-# List_all <- as.list(A_High_19$Key)
-# start_time <- Sys.time()
-# comps_all <- lapply(List_all, Minors_Elite)
-# end_time <- Sys.time()
-# end_time - start_time
+#  A_High_19 <- filter(miLB, Level == "A+")
+#  List_all <- as.list(A_High_19$Key)
+#  start_time <- Sys.time()
+#  comps_all <- lapply(List_all, Minors_Elite)
+#  end_time <- Sys.time()
+#  end_time - start_time
 # 
-# Elite <- data.frame(unlist(comps_all))
-# colnames(Elite) <- "Elite_Rate"
-# A_High_19 <- cbind(A_High_19,Elite)
-# A_High_19 <- A_High_19[,c(1:7,28)]
+#  Elite <- data.frame(unlist(comps_all))
+#  colnames(Elite) <- "Elite_Rate"
+#  A_High_19 <- cbind(A_High_19,Elite)
+#  A_High_19 <- A_High_19[,c(1:7,28)]
 # 
-# A_Low_19 <- filter(miLB, Level == "A-")
-# List_all <- as.list(A_Low_19$Key)
-# start_time <- Sys.time()
-# comps_all <- lapply(List_all, Minors_Elite)
-# end_time <- Sys.time()
-# end_time - start_time
+#  A_Low_19 <- filter(miLB, Level == "A-")
+#  List_all <- as.list(A_Low_19$Key)
+#  start_time <- Sys.time()
+#  comps_all <- lapply(List_all, Minors_Elite)
+#  end_time <- Sys.time()
+#  end_time - start_time
 # 
-# Elite <- data.frame(unlist(comps_all))
-# colnames(Elite) <- "Elite_Rate"
-# A_Low_19 <- cbind(A_Low_19,Elite)
-# A_Low_19 <- A_Low_19[,c(1:7,28)]
+#  Elite <- data.frame(unlist(comps_all))
+#  colnames(Elite) <- "Elite_Rate"
+#  A_Low_19 <- cbind(A_Low_19,Elite)
+#  A_Low_19 <- A_Low_19[,c(1:7,28)]
 # 
-# A_19 <- filter(miLB, Level == "A")
-# List_all <- as.list(A_19$Key)
-# start_time <- Sys.time()
-# comps_all <- lapply(List_all, Minors_Elite)
-# end_time <- Sys.time()
-# end_time - start_time
+#  A_19 <- filter(miLB, Level == "A")
+#  List_all <- as.list(A_19$Key)
+#  start_time <- Sys.time()
+#  comps_all <- lapply(List_all, Minors_Elite)
+#  end_time <- Sys.time()
+#  end_time - start_time
 # 
-# Elite <- data.frame(unlist(comps_all))
-# colnames(Elite) <- "Elite_Rate"
-# A_19 <- cbind(A_19,Elite)
-# A_19 <- A_19[,c(1:7,28)]
+#  Elite <- data.frame(unlist(comps_all))
+#  colnames(Elite) <- "Elite_Rate"
+#  A_19 <- cbind(A_19,Elite)
+#  A_19 <- A_19[,c(1:7,28)]
 # 
-# milb_2019 <- rbind(AAA_19,AA_19,A_High_19,A_Low_19,A_19)
-# # 
-# # # Build Table 2019 Elite Rate at All Levels -----
-# all_players_AAA <- milb_2019 %>%
-#   filter(Level == "AAA") %>%
-#   group_by(Name, PlayerId) %>%
-#   arrange(Name, PlayerId) %>%
-#   summarise(AAA.PA = sum(PA),
-#             AAAER = wt.mean(Elite_Rate,PA))
+#  milb_2019 <- rbind(AAA_19,AA_19,A_High_19,A_Low_19,A_19)
 # 
-# all_players_AA <- milb_2019 %>%
-#   filter(Level == "AA") %>%
-#   group_by(Name, PlayerId) %>%
-#   arrange(Name, PlayerId) %>%
-#   summarise(AA.PA = sum(PA),
-#             AAER = wt.mean(Elite_Rate,PA))
+# #Build Table 2019 Elite Rate at All Levels -----
+#  all_players_AAA <- milb_2019 %>%
+#    filter(Level == "AAA") %>%
+#    group_by(Name, PlayerId) %>%
+#    arrange(Name, PlayerId) %>%
+#    summarise(AAA.PA = sum(PA),
+#              AAAER = wt.mean(Elite_Rate,PA))
 # 
-# all_players_A_High <- milb_2019 %>%
-#   filter(Level == "A+") %>%
-#   group_by(Name, PlayerId) %>%
-#   arrange(Name, PlayerId) %>%
-#   summarise(A_High.PA = sum(PA),
-#             A_HighER = wt.mean(Elite_Rate,PA))
+#  all_players_AA <- milb_2019 %>%
+#    filter(Level == "AA") %>%
+#    group_by(Name, PlayerId) %>%
+#    arrange(Name, PlayerId) %>%
+#    summarise(AA.PA = sum(PA),
+#              AAER = wt.mean(Elite_Rate,PA))
 # 
-# all_players_A <- milb_2019 %>%
-#   filter(Level == "A") %>%
-#   group_by(Name, PlayerId) %>%
-#   arrange(Name, PlayerId) %>%
-#   summarise(A.PA = sum(PA),
-#             AER = wt.mean(Elite_Rate,PA))
+#  all_players_A_High <- milb_2019 %>%
+#    filter(Level == "A+") %>%
+#    group_by(Name, PlayerId) %>%
+#    arrange(Name, PlayerId) %>%
+#    summarise(A_High.PA = sum(PA),
+#              A_HighER = wt.mean(Elite_Rate,PA))
 # 
-# all_players_A_Low <- milb_2019 %>%
-#   filter(Level == "A-") %>%
-#   group_by(Name, PlayerId) %>%
-#   arrange(Name, PlayerId) %>%
-#   summarise(A_Low.PA = sum(PA),
-#             A_LowER = wt.mean(Elite_Rate,PA))
+#  all_players_A <- milb_2019 %>%
+#    filter(Level == "A") %>%
+#    group_by(Name, PlayerId) %>%
+#    arrange(Name, PlayerId) %>%
+#    summarise(A.PA = sum(PA),
+#              AER = wt.mean(Elite_Rate,PA))
 # 
-# all_players <- merge(milb_2019[,c(1,2,6)],all_players_AAA, by = intersect(names(milb_2019), names(all_players_AAA)),all = TRUE)
-# all_players <- merge(all_players,all_players_AA, by = intersect(names(all_players), names(all_players_AA)),all = TRUE)
-# all_players <- merge(all_players,all_players_A_High, by = intersect(names(all_players), names(all_players_A_High)),all = TRUE)
-# all_players <- merge(all_players,all_players_A, by = intersect(names(all_players), names(all_players_A)),all = TRUE)
-# all_players <- merge(all_players,all_players_A_Low, by = intersect(names(all_players), names(all_players_A_Low)),all = TRUE)
-# all_players <- distinct(all_players)
-# all_players[is.na(all_players)] <- 0
-# all_players$TotalER <- rowSums(all_players[,c(5,7,9,11,13)] *
-#                                  all_players[,c(4,6,8,10,12)])/
-#   rowSums(all_players[,c(4,6,8,10,12)])
+#  all_players_A_Low <- milb_2019 %>%
+#    filter(Level == "A-") %>%
+#    group_by(Name, PlayerId) %>%
+#    arrange(Name, PlayerId) %>%
+#    summarise(A_Low.PA = sum(PA),
+#              A_LowER = wt.mean(Elite_Rate,PA))
 # 
-# all_players_adjust <- all_players
-# all_players_adjust$AAAER <- all_players_adjust$AAAER-wt.mean(all_players_adjust$AAAER,all_players_adjust$AAA.PA)
-# all_players_adjust$AAER <- all_players_adjust$AAER-wt.mean(all_players_adjust$AAER,all_players_adjust$AA.PA)
-# all_players_adjust$A_HighER <- all_players_adjust$A_HighER-wt.mean(all_players_adjust$A_HighER,all_players_adjust$A_High.PA)
-# all_players_adjust$AER <- all_players_adjust$AER-wt.mean(all_players_adjust$AER,all_players_adjust$A.PA)
-# all_players_adjust$A_LowER <- all_players_adjust$A_LowER-wt.mean(all_players_adjust$A_LowER,all_players_adjust$A_LowER)
-# all_players_adjust$TotalER <- rowSums(all_players_adjust[,c(5,7,9,11,13)] *
-#                                           all_players_adjust[,c(4,6,8,10,12)])/
-#   rowSums(all_players_adjust[,c(4,6,8,10,12)])
-
-#write_rds(all_players,"upside_rates.rds")
+#  all_players <- merge(milb_2019[,c(1,2,6)],all_players_AAA, by = intersect(names(milb_2019), names(all_players_AAA)),all = TRUE)
+#  all_players <- merge(all_players,all_players_AA, by = intersect(names(all_players), names(all_players_AA)),all = TRUE)
+#  all_players <- merge(all_players,all_players_A_High, by = intersect(names(all_players), names(all_players_A_High)),all = TRUE)
+#  all_players <- merge(all_players,all_players_A, by = intersect(names(all_players), names(all_players_A)),all = TRUE)
+#  all_players <- merge(all_players,all_players_A_Low, by = intersect(names(all_players), names(all_players_A_Low)),all = TRUE)
+#  all_players <- distinct(all_players)
+#  all_players[is.na(all_players)] <- 0
+#  all_players$TotalER <- rowSums(all_players[,c(5,7,9,11,13)] *
+#                                   all_players[,c(4,6,8,10,12)])/
+#    rowSums(all_players[,c(4,6,8,10,12)])
+# 
+#  all_players_adjust <- all_players
+#  all_players_adjust$AAAER <- all_players_adjust$AAAER-wt.mean(all_players_adjust$AAAER,all_players_adjust$AAA.PA)
+#  all_players_adjust$AAER <- all_players_adjust$AAER-wt.mean(all_players_adjust$AAER,all_players_adjust$AA.PA)
+#  all_players_adjust$A_HighER <- all_players_adjust$A_HighER-wt.mean(all_players_adjust$A_HighER,all_players_adjust$A_High.PA)
+#  all_players_adjust$AER <- all_players_adjust$AER-wt.mean(all_players_adjust$AER,all_players_adjust$A.PA)
+#  all_players_adjust$A_LowER <- all_players_adjust$A_LowER-wt.mean(all_players_adjust$A_LowER,all_players_adjust$A_LowER)
+#  all_players_adjust$TotalER <- rowSums(all_players_adjust[,c(5,7,9,11,13)] *
+#                                            all_players_adjust[,c(4,6,8,10,12)])/
+#    rowSums(all_players_adjust[,c(4,6,8,10,12)])
+# 
+# write_rds(all_players,"data/upside_rates.rds")
 
 all_players_elite <- readRDS("data/upside_rates.rds")
 
@@ -633,15 +640,18 @@ updates <- tibble(
   Version = c("1.0",
               "1.1",
               "2.0",
-              "2.1"),
+              "2.1",
+              "2.2"),
   Description = c("Initial Upload",
                   "Download Handler",
                   "Removed ISO Replaced With wRC+",
-                  "Elite Rate Added"),
+                  "Elite Rate Added",
+                  "Adjustment To Player Sample"),
   Date = c("1-13-2020",
            "2-4-2020",
            "5-8-2020",
-           "5-19-2020")
+           "5-19-2020",
+           "5-30-2020")
 )
 
 update <- gt(updates,
@@ -667,8 +677,8 @@ update <- gt(updates,
 # 
 # top_upside <- gt(all_players_table) %>%
 #   tab_options(
-#               heading.background.color = "#074d8b",
-#               column_labels.background.color = "#46e82d") %>%
+#               heading.background.color = "black",
+#               column_labels.background.color = "gray") %>%
 #   tab_header(
 #     title = "Top Fantasy Upside Prospects",
 #     subtitle = "@pmamminofantasy") %>%
@@ -679,3 +689,8 @@ update <- gt(updates,
 #     footnote = "Based On Statitical Comps",
 #     locations = cells_column_labels(
 #       columns = vars(TotalER)))
+
+all_players_2019_nz <- all_players_2019 %>%
+  filter(`Elite Rate` > 0)
+
+colfunc <- colorRampPalette(c("blue","white", "red"))
